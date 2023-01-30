@@ -5,7 +5,7 @@ const {checkName, checkBooleen, validateImage} = require('../validations/validSn
 const {
     getAllSnacks, getAsnack, createSnacks, updateSnacks, deleteSnacks
 } = require("../queries/snacks"); 
-
+const confirmHealth = require('../confirmHealth')
 //INDEX
 snacks.get("/", async (req, res) => {
     const allSnacks = await getAllSnacks(); 
