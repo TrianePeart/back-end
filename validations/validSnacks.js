@@ -1,4 +1,5 @@
 //req.body.name was after the + and it had to be word, you had lowercase after the closing of map and was causing this validation to break
+
 const checkName = (req, res, next) => {
   if (req.body.name) {
     req.body.name = req.body.name
