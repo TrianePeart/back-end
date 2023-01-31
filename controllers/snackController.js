@@ -39,10 +39,10 @@ snacks.get("/:id", async (req, res) => {
 
 //CREATE
 snacks.post("/", checkName, validateImage, async (req, res) => {
-  const { body } = req;
-  body.is_healthy = confirmHealth(body);
+  const snack = req.body;
+  snack.is_healthy = confirmHealth(snack);
   try {
-    const createSnack = await createSnacks(req.body);
+    const createSnack = await createSnacks(snack);
     res.status(200).json(createSnack);
   } catch (error) {
     res.status(500).json({ error: "Problem With The Server" });

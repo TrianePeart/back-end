@@ -22,14 +22,15 @@ const getAsnack = async (id) => {
 };
 
 //CREATE
+//Protein was spelled incorrectly as"protien"
 const createSnacks = async (snack) => {
   try {
     const createSnack = await db.one(
-      "INSERT INTO snacks (name, fiber, protien, added_sugar, is_healthy, image) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+      "INSERT INTO snacks (name, fiber, protein, added_sugar, is_healthy, image) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
       [
         snack.name,
         snack.fiber,
-        snack.protien,
+        snack.protein,
         snack.added_sugar,
         snack.is_healthy,
         snack.image,
@@ -44,13 +45,14 @@ const createSnacks = async (snack) => {
 //UPDATE
 const updateSnacks = async (id, snack) => {
   //I figure edit snacks would be this to keep them from meshing -TRIANE
+  //Protein was spelled incorrectly as"protien"
   try {
     const updateSnack = await db.one(
-      "UPDATE snacks SET (name=$1, fiber=$2, protien=$3, added_sugar=$4, is_healthy=$5, image=$6) WHERE id=$7 RETURNING *",
+      "UPDATE snacks SET (name=$1, fiber=$2, protein=$3, added_sugar=$4, is_healthy=$5, image=$6) WHERE id=$7 RETURNING *",
       [
         snack.name,
         snack.fiber,
-        snack.protien,
+        snack.protein,
         snack.is_healthy,
         snack.image,
         id,
