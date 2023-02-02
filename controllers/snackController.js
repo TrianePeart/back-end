@@ -2,8 +2,7 @@ const express = require("express");
 const snacks = express.Router();
 const {
   checkName,
-  checkBooleen,
-  validateImage,
+  checkBooleen
 } = require("../validations/validSnacks");
 //Log in should be here
 const {
@@ -38,7 +37,7 @@ snacks.get("/:id", async (req, res) => {
 });
 
 //CREATE
-snacks.post("/", checkName, validateImage, async (req, res) => {
+snacks.post("/", checkName,  async (req, res) => {
   const snack = req.body;
   snack.is_healthy = confirmHealth(snack);
   try {
@@ -50,15 +49,11 @@ snacks.post("/", checkName, validateImage, async (req, res) => {
 });
 
 //UPDATE
-snacks.put("/:id", checkName, validateImage, async (req, res) => {
-  const { id } = req.params;
-  try {
+snacks.put("/:id", checkName, async (req, res) => {
+    try {
+    const { id } = req.params;
     const updateSnack = await updateSnacks(id, req.body);
-    if (updateSnack.id) {
-      res.status(200).json(updateSnack);
-    } else {
-      res.status(404).json({ error: "Page Not Found" });
-    }
+    res.status(200).json(updateSnack)
   } catch (error) {
     res.status(500).json({ error: "Problem With The Server" });
   }

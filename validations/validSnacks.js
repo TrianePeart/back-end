@@ -30,21 +30,21 @@ const checkName = (req, res, next) => {
 //CHECK BOOLEEN IS NOT WORKING CORRECTLY TOOK OUT TO ALLOW TEST TO RUN
 // might not need this
 
-const validateImage = (req, res, next) => {
-  if (
-    req.body.image.substring(0, 7) === "http://" ||
-    req.body.image.substring(0, 8) === "https://"
-  ) {
-    return next();
-  } else {
-    res
-      .status(400)
-      .json({ error: "You forgot to start your URL w http:// or https://" });
-  }
-};
+// const validateImage = (req, res, next) => {
+//   if (
+//     req.body.image.substring(0, 7) === "http://" ||
+//     req.body.image.substring(0, 8) === "https://"
+//   ) {
+//     return next();
+//   } else {
+//     res
+//       .status(400)
+//       .json({ error: "You forgot to start your URL w http:// or https://" });
+//   }
+// };
 
 //Working correctly
 module.exports = {
   checkName,
-  validateImage,
+  // validateImage,
 };
