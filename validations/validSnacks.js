@@ -15,17 +15,17 @@ const checkName = (req, res, next) => {
 
 //Working correctly
 
-// const checkBoolean = (req, res, next) => {
-//     if (
-//       req.body.is_healthy === true ||
-//       req.body.is_healthy === false ||
-//       req.body.is_healthy === undefined
-//     ) {
-//       next();
-//     } else {
-//       res.status(400).json({ error: "is_healthy must be a boolean value" });
-//     }
-//   };
+const checkBoolean = (req, res, next) => {
+    if (
+      req.body.is_healthy === true ||
+      req.body.is_healthy === false ||
+      req.body.is_healthy === undefined
+    ) {
+      next();
+    } else {
+      res.status(400).json({ error: "is_healthy must be a boolean value" });
+    }
+  };
 
 //CHECK BOOLEEN IS NOT WORKING CORRECTLY TOOK OUT TO ALLOW TEST TO RUN
 // might not need this
@@ -45,6 +45,6 @@ const checkName = (req, res, next) => {
 
 //Working correctly
 module.exports = {
-  checkName,
+  checkName, checkBoolean,
   // validateImage,
 };

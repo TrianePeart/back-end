@@ -1,9 +1,6 @@
 const express = require("express");
 const snacks = express.Router();
-const {
-  checkName,
-  checkBooleen
-} = require("../validations/validSnacks");
+const { checkName, checkBoolean } = require("../validations/validSnacks");
 //Log in should be here
 const {
   getAllSnacks,
@@ -37,7 +34,7 @@ snacks.get("/:id", async (req, res) => {
 });
 
 //CREATE
-snacks.post("/", checkName,  async (req, res) => {
+snacks.post("/", checkName, checkBoolean, async (req, res) => {
   const snack = req.body;
   snack.is_healthy = confirmHealth(snack);
   try {
@@ -49,15 +46,15 @@ snacks.post("/", checkName,  async (req, res) => {
 });
 
 //UPDATE
-snacks.put("/:id", checkName, async (req, res) => {
+snacks.put('/:id', checkName, checkBoolean, async(req,res)=>{
     try {
-    const { id } = req.params;
-    const updateSnack = await updateSnacks(id, req.body);
-    res.status(200).json(updateSnack)
-  } catch (error) {
-    res.status(500).json({ error: "Problem With The Server" });
-  }
-});
+        const {id}=req.params
+        const updatedSnack = await updateSnacks(id, req.body)
+        res.status(200).json(updatedSnack)
+    } catch (error) {
+        res.status(404).json({error:"Problem With The Server"})
+    }
+  })
 
 //DELETE
 snacks.delete("/:id", async (req, res) => {
